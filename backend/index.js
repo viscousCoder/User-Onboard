@@ -17,7 +17,10 @@ const app = express();
 const PORT = process.env.PORT || 9001;
 
 //connection with db
-connectionDB("mongodb://127.0.0.1:27017/onboarding").then(() =>
+// connectionDB("mongodb://127.0.0.1:27017/onboarding").then(() =>
+//   console.log("MongoDB connected successfull")
+// );
+connectionDB(process.env.MONGO_URL).then(() =>
   console.log("MongoDB connected successfull")
 );
 
