@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
@@ -11,7 +13,8 @@ const tableRouter = require("./routes/tableData");
 const bankRouter = require("./routes/bank");
 
 const app = express();
-const PORT = 8000;
+// const PORT = 8000;
+const PORT = process.env.PORT || 9001;
 
 //connection with db
 connectionDB("mongodb://127.0.0.1:27017/onboarding").then(() =>
