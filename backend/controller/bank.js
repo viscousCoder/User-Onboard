@@ -4,8 +4,6 @@ const plaid = require("plaid");
 const User = require("../model/user");
 
 // plaid setup
-console.log(process.env.PLAID_ID, process.env.PLAID_SECRET);
-
 const client = new plaid.PlaidApi(
   new plaid.Configuration({
     basePath: plaid.PlaidEnvironments["sandbox"],
