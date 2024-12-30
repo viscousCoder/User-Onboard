@@ -45,18 +45,18 @@ interface NavListProps {
 
 const NavList = ({ closeDrawer, ...props }: NavListProps) => {
   const navigate = useNavigate();
-  const [currentUser, setCurrentUser] = useState<string | null>(null);
+  // const [currentUser, setCurrentUser] = useState<string | null>(null);
 
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const curr = JSON.parse(localStorage.getItem("currentUser"));
-  console.log("hello data", curr);
-  const iconLogo = curr?.username?.slice(0, 1).toUpperCase();
+  // const curr = JSON.parse(localStorage.getItem("currentUser"));
+  // console.log("hello data", curr);
+  // const iconLogo = curr?.username?.slice(0, 1).toUpperCase();
   const isDark = false;
 
-  useEffect(() => {
-    setCurrentUser(localStorage.getItem("currentUser") || null);
-  }, []);
+  // useEffect(() => {
+  //   setCurrentUser(localStorage.getItem("currentUser") || null);
+  // }, []);
 
   function handleChange() {
     setOpen(false);
@@ -127,7 +127,7 @@ const NavList = ({ closeDrawer, ...props }: NavListProps) => {
 
       <Button onClick={handleAvtarClick}>
         <Avatar sx={{ bgcolor: deepOrange[500] }} alt="User Image">
-          {iconLogo}
+          U
         </Avatar>
       </Button>
 
