@@ -21,6 +21,8 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getCurrentUser } from "../store/userSlice";
 import { AppDispatch } from "../store/store";
+import PersonIcon from "@mui/icons-material/Person";
+import Logo from "../assets/user.png";
 // import logo from "../../assets/logo2.jpeg";
 
 // Type definition for page data
@@ -127,7 +129,7 @@ const NavList = ({ closeDrawer, ...props }: NavListProps) => {
 
       <Button onClick={handleAvtarClick}>
         <Avatar sx={{ bgcolor: deepOrange[500] }} alt="User Image">
-          U
+          <PersonIcon />
         </Avatar>
       </Button>
 
@@ -269,7 +271,8 @@ const Header = () => {
             <Avatar>
               <IconButton>
                 {/* <img src={logo} height={"55px"} width={"61px"} /> */}
-                <Typography>A</Typography>
+                {/* <Typography>A</Typography> */}
+                <img src={Logo} height={30} />
               </IconButton>
             </Avatar>
             <Nav />
