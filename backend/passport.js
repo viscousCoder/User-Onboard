@@ -14,7 +14,8 @@ passport.use(
     {
       clientID: process.env.GOOGLECLIENTID,
       clientSecret: process.env.GOOGLECLIENTSECRET,
-      callbackURL: "/auth/google/callback",
+      callbackURL: "https://user-onboard.onrender.com/auth/google/callback",
+      // callbackURL: "/auth/google/callback",
       prompt: "select_account",
     },
     async (accessToken, refreshToken, profile, cb) => {
