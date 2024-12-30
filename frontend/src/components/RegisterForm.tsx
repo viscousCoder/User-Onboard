@@ -408,9 +408,9 @@ const RegisterForm: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    getUser();
-  });
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
 
   return (
     <form onSubmit={handleSubmit} method="post">
