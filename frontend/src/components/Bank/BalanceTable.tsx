@@ -9,6 +9,20 @@ import {
   Paper,
 } from "@mui/material";
 
+// interface Account {
+//   account_id: string;
+//   balances: {
+//     available: number;
+//     current: number;
+//     iso_currency_code: string;
+//     limit: number | null;
+//     unofficial_currency_code: string | null;
+//   };
+//   mask: string;
+//   name: string;
+//   subtype: string;
+// }
+
 interface Account {
   account_id: string;
   balances: {
@@ -28,6 +42,7 @@ interface BalanceTableProps {
 }
 
 const BalanceTable: React.FC<BalanceTableProps> = ({ data }) => {
+  console.log(data);
   if (!Array.isArray(data)) {
     return <p>No balance data available</p>;
   }

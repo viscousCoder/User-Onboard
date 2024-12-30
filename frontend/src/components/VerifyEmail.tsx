@@ -12,11 +12,15 @@ import { RootState } from "../store/store";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "react-toastify";
+interface User {
+  emailToken?: string;
+  isVerified?: boolean;
+}
 
 const VerifyEmail = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const user = useSelector<RootState>((state) => state.user.user);
+  const user = useSelector<RootState, User | null>((state) => state.user.user);
   const userEmailToken = user?.emailToken;
 
   const isVerified = user?.isVerified;
@@ -28,7 +32,7 @@ const VerifyEmail = () => {
   const emailToken = searchParams.get("emailToken");
   console.log("emailToken", emailToken);
 
-  const postRequest = async (url, body) => {
+  const postRequest = async (url: string, body: string) => {
     const response = await fetch(url, {
       method: "POST",
       headers: {

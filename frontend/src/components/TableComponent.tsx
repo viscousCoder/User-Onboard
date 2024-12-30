@@ -5,62 +5,9 @@ import axios from "axios";
 import DataGridToolbar from "./DataGridToolbar";
 import { Button } from "@mui/material";
 
-const columns: GridColDef<(typeof rows)[number]>[] = [
-  { field: "id", headerName: "ID", width: 90 },
-  {
-    field: "firstName",
-    headerName: "First name",
-    width: 150,
-    editable: true,
-  },
-  {
-    field: "lastName",
-    headerName: "Last name",
-    width: 150,
-    editable: true,
-  },
-
-  {
-    field: "fullName",
-    headerName: "Full name",
-    description: "This column has a value getter and is not sortable.",
-    sortable: false,
-    width: 160,
-    valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
-  },
-  {
-    field: "email",
-    headerName: "Email",
-    width: 300,
-    editable: true,
-  },
-  {
-    field: "isVerified",
-    headerName: "Verified",
-    type: "string",
-    width: 150,
-    editable: true,
-    renderCell: (params) => (
-      <span
-        style={{
-          color: params.value ? "green" : "red",
-          fontWeight: "bold",
-        }}
-      >
-        {params.value ? "Verified" : "Unverified"}
-      </span>
-    ),
-  },
-  {
-    field: "address",
-    headerName: "Address",
-    width: 300,
-  },
-];
-
 export default function TableComponent() {
   const token = localStorage.getItem("token");
-  const [tableData, setTableData] = React.useState();
+  const [tableData, setTableData] = React.useState<any[]>([]);
   async function getTableData() {
     try {
       const response = await axios.get("http://localhost:8000/table/data", {
@@ -90,6 +37,59 @@ export default function TableComponent() {
       // createdAt: user.createdAt,
     };
   });
+
+  const columns: GridColDef<(typeof rows)[number]>[] = [
+    { field: "id", headerName: "ID", width: 90 },
+    {
+      field: "firstName",
+      headerName: "First name",
+      width: 150,
+      editable: true,
+    },
+    {
+      field: "lastName",
+      headerName: "Last name",
+      width: 150,
+      editable: true,
+    },
+
+    {
+      field: "fullName",
+      headerName: "Full name",
+      description: "This column has a value getter and is not sortable.",
+      sortable: false,
+      width: 160,
+      valueGetter: (_, row) => `${row.firstName || ""} ${row.lastName || ""}`,
+    },
+    {
+      field: "email",
+      headerName: "Email",
+      width: 300,
+      editable: true,
+    },
+    {
+      field: "isVerified",
+      headerName: "Verified",
+      type: "string",
+      width: 150,
+      editable: true,
+      renderCell: (params) => (
+        <span
+          style={{
+            color: params.value ? "green" : "red",
+            fontWeight: "bold",
+          }}
+        >
+          {params.value ? "Verified" : "Unverified"}
+        </span>
+      ),
+    },
+    {
+      field: "address",
+      headerName: "Address",
+      width: 300,
+    },
+  ];
   return (
     <Box sx={{ height: 409, width: "85rem", background: "white" }}>
       <DataGrid

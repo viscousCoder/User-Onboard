@@ -145,6 +145,16 @@ import React, { useState, useCallback } from "react";
 import axios from "axios";
 import { Autocomplete, TextField, CircularProgress } from "@mui/material";
 
+interface GeoapifyFeature {
+  properties: {
+    formatted: string;
+  };
+}
+
+interface GeoapifyResponse {
+  features: GeoapifyFeature[];
+}
+
 const Address = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [options, setOptions] = useState<string[]>([]);
@@ -165,10 +175,10 @@ const Address = () => {
       url: `https://api.geoapify.com/v1/geocode/autocomplete?text=${query}&apiKey=94a5631c98e84c2fb7233fcbe791569e`,
     };
 
-    axios(config)
+    axios<GeoapifyResponse>(config)
       .then((response) => {
         const results = response.data.features.map(
-          (item: any) => item.properties.formatted
+          (item) => item.properties.formatted
         );
         setOptions(results);
       })
@@ -196,9 +206,11 @@ const Address = () => {
   );
 
   const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.SyntheticEvent<Element, Event>,
     newValue: string
   ) => {
+    const inputTarget = event.target as HTMLInputElement;
+    console.log(inputTarget.value);
     setInputValue(newValue);
     debouncedApiCall(newValue);
   };

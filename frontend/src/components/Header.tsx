@@ -18,9 +18,9 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { DarkMode, LightMode } from "@mui/icons-material";
 import { deepOrange } from "@mui/material/colors";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getCurrentUser } from "../store/userSlice";
-import { AppDispatch, RootState } from "../store/store";
+import { AppDispatch } from "../store/store";
 // import logo from "../../assets/logo2.jpeg";
 
 // Type definition for page data
@@ -45,7 +45,7 @@ interface NavListProps {
 
 const NavList = ({ closeDrawer, ...props }: NavListProps) => {
   const navigate = useNavigate();
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState<string | null>(null);
 
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -54,7 +54,7 @@ const NavList = ({ closeDrawer, ...props }: NavListProps) => {
   const isDark = false;
 
   useEffect(() => {
-    setCurrentUser(localStorage.getItem("currentUser") || []);
+    setCurrentUser(localStorage.getItem("currentUser") || null);
   }, []);
 
   function handleChange() {
@@ -213,10 +213,10 @@ const Nav = () => {
 
 const Header = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [userdata, setUserdata] = useState({});
+  // const [userdata, setUserdata] = useState({});
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const user = useSelector<RootState>((state) => state.user.user?.isVerified);
+  // const user = useSelector<RootState>((state) => state.user.user?.isVerified);
 
   const getUser = async () => {
     try {
@@ -228,7 +228,7 @@ const Header = () => {
       localStorage.setItem("accessToken", response.data.user.accessToken);
       localStorage.setItem("itemId", response.data.user.itemId);
       localStorage.setItem("userId", response.data.user._id);
-      setUserdata(response.data.user);
+      // setUserdata(response.data.user);
       navigate("/");
     } catch (error) {
       console.log("error", error);

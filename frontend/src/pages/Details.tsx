@@ -3,12 +3,11 @@ import {
   Container,
   Grid,
   Typography,
-  Box,
   Card,
   CardContent,
   CardMedia,
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+// import { useTheme } from "@mui/material/styles";
 
 // Define the type for the image URLs
 const imageUrls: string[] = [
@@ -18,7 +17,7 @@ const imageUrls: string[] = [
 ];
 
 const Details: React.FC = () => {
-  const theme = useTheme();
+  // const theme = useTheme();
 
   return (
     <Container>

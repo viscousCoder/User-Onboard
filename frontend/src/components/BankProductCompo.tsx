@@ -241,11 +241,35 @@ const products: Product[] = [
   },
 ];
 
+export interface AuthData {
+  accounts: {
+    account_id: string;
+    balances: {
+      current: number;
+      available: number | null;
+    };
+    name: string;
+    official_name: string;
+    mask: string;
+    subtype: string;
+    type: string;
+  }[];
+  numbers: {
+    ach: {
+      account: string;
+      routing: string;
+      account_id: string;
+    }[];
+  };
+}
+
+// interface TableBody {}
+
 const BankProductCompo: React.FC = () => {
   const user = useSelector<RootState>((state) => state.user.user?.accessToken);
 
   const [visibleTable, setVisibleTable] = useState<number | null>(null);
-  const [tableData, setTableData] = useState<{ [key: number]: any[] }>({});
+  const [tableData, setTableData] = useState<any[]>([]);
   const [loading, setLoading] = useState<{ [key: number]: boolean }>({});
   const [error, setError] = useState<{ [key: number]: string }>({});
   // const accessToken = localStorage.getItem("accessToken") || "{}";
@@ -260,7 +284,7 @@ const BankProductCompo: React.FC = () => {
         `http://localhost:8000/${product.endpoint}`,
         {
           headers: {
-            accessToken: accessToken,
+            accessToken: accessToken as string,
           },
         }
       );
@@ -271,10 +295,11 @@ const BankProductCompo: React.FC = () => {
       } else {
         throw new Error("Received empty data from the API");
       }
-    } catch (err: any) {
+    } catch (err) {
+      const error = err as Error;
       setError((prev) => ({
         ...prev,
-        [product.id]: err.message || "Failed to fetch data",
+        [product.id]: error.message || "Failed to fetch data",
       }));
     } finally {
       setLoading((prev) => ({ ...prev, [product.id]: false }));

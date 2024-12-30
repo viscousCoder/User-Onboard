@@ -66,13 +66,35 @@ import {
   Box,
 } from "@mui/material";
 
-interface AuthData {
+// export interface AuthData {
+//   accounts: {
+//     account_id: string;
+//     balances: {
+//       current: number;
+//     };
+//     name: string;
+//   }[];
+//   numbers: {
+//     ach: {
+//       account: string;
+//       routing: string;
+//       account_id: string;
+//     }[];
+//   };
+// }
+
+export interface AuthData {
   accounts: {
     account_id: string;
     balances: {
       current: number;
+      available: number | null;
     };
     name: string;
+    official_name: string;
+    mask: string;
+    subtype: string;
+    type: string;
   }[];
   numbers: {
     ach: {

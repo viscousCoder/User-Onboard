@@ -1,4 +1,3 @@
-import React from "react";
 import BankComponent from "../components/BankComponent";
 
 const BankPage = () => {

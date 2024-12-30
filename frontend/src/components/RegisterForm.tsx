@@ -208,7 +208,7 @@
 
 // export default RegisterForm;
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import {
   TextField,
   Button,
@@ -220,7 +220,8 @@ import {
   Avatar,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Image from "../assets/google.png";
@@ -302,17 +303,20 @@ const RegisterForm: React.FC = () => {
   };
 
   const handleAddressInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.SyntheticEvent<Element, Event>,
     newValue: string
   ) => {
+    console.log(event);
     setFormValues({ ...formValues, address: newValue });
     debouncedApiCall(newValue);
   };
 
   const handleAddressChange = (
-    event: React.ChangeEvent<{}>,
+    // event: React.ChangeEvent<{}>,
+    event: React.SyntheticEvent<Element, Event>,
     newValue: string | null
   ) => {
+    console.log(event);
     setFormValues({ ...formValues, address: newValue || "" });
   };
 
@@ -377,12 +381,13 @@ const RegisterForm: React.FC = () => {
           navigate("/login");
         }
       } catch (error) {
+        const err = error as AxiosError;
         toast.error("Email already exist");
         setErrors({
           ...errors,
           email: "Email already exist",
         });
-        console.log(errors);
+        console.log(err);
       }
     }
   };
@@ -391,22 +396,22 @@ const RegisterForm: React.FC = () => {
     window.open("http://localhost:8000/auth/google", "_self");
   };
 
-  const getUser = async () => {
-    try {
-      const response = await axios.get("http://localhost:8000/login/success", {
-        withCredentials: true,
-      });
-      // console.log(response.data.user._id, "Data");
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("accessToken", response.data.user.accessToken);
-      localStorage.setItem("itemId", response.data.user.itemId);
-      localStorage.setItem("userId", response.data.user._id);
-      // setUserdata(response.data.user);
-      navigate("/");
-    } catch (error) {
-      console.log("error", error);
-    }
-  };
+  // const getUser = async () => {
+  //   try {
+  //     const response = await axios.get("http://localhost:8000/login/success", {
+  //       withCredentials: true,
+  //     });
+  //     // console.log(response.data.user._id, "Data");
+  //     localStorage.setItem("token", response.data.token);
+  //     localStorage.setItem("accessToken", response.data.user.accessToken);
+  //     localStorage.setItem("itemId", response.data.user.itemId);
+  //     localStorage.setItem("userId", response.data.user._id);
+  //     // setUserdata(response.data.user);
+  //     navigate("/");
+  //   } catch (error) {
+  //     console.log("error", error);
+  //   }
+  // };
 
   // useEffect(() => {
   //   getUser();

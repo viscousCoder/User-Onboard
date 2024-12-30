@@ -1,5 +1,25 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+
+interface User {
+  _id: string;
+  username: string;
+  email: string;
+  password: string;
+  address: string;
+  isVerified: boolean;
+  emailToken: string;
+  accessToken: string;
+  itemId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface UserState {
+  isLoading: boolean;
+  user: User | null;
+  error: string;
+}
 
 export const getCurrentUser = createAsyncThunk(
   "user/getCurrentUser",
@@ -20,17 +40,16 @@ export const getCurrentUser = createAsyncThunk(
 
       return response.data.user;
     } catch (error) {
-      return rejectWithValue(
-        error.response?.data || "Failed to fetch user data"
-      );
+      const err = error as AxiosError;
+      return rejectWithValue(err.response?.data || "Failed to fetch user data");
     }
   }
 );
 
-const initialState = {
+const initialState: UserState = {
   isLoading: false,
-  user: {},
-  error: null,
+  user: null,
+  error: "",
 };
 
 const userSlice = createSlice({
@@ -41,7 +60,7 @@ const userSlice = createSlice({
     builder
       .addCase(getCurrentUser.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
+        state.error = "";
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -49,7 +68,7 @@ const userSlice = createSlice({
       })
       .addCase(getCurrentUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
   },
 });

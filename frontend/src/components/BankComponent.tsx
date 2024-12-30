@@ -90,12 +90,12 @@ import { getCurrentUser } from "../store/userSlice";
 
 const BankComponent = () => {
   const [token, setToken] = useState<string | null>(null); // State to hold the accessToken
-  const userId = localStorage.getItem("userId") || null;
-  const tokenUser = localStorage.getItem("token") || null;
+  const userId = localStorage.getItem("userId") || undefined;
+  const tokenUser = localStorage.getItem("token") || undefined;
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(getCurrentUser(tokenUser));
+    dispatch(getCurrentUser(tokenUser || undefined));
   }, [token]);
 
   // console.log(userId, "Data");
@@ -138,7 +138,7 @@ const BankComponent = () => {
       console.error("Error creating link token:", error);
     }
   };
-  const accessToken = localStorage.getItem("accessToken") || null;
+  // const accessToken = localStorage.getItem("accessToken") || null;
 
   return (
     <>
