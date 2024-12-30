@@ -1,6 +1,7 @@
 const { createMailTransporter } = require("./createMailTransporter");
 
 const sendVerificationMail = (user) => {
+  console.log("aman");
   const transporter = createMailTransporter();
   const mailOptions = {
     from: `Celestial system <aman.bisht@celestialsys.com>`,

@@ -49,7 +49,8 @@ const NavList = ({ closeDrawer, ...props }: NavListProps) => {
 
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const curr = JSON.parse(localStorage.getItem("currentUser") || "{}");
+  const curr = JSON.parse(localStorage.getItem("currentUser"));
+  console.log("hello data", curr);
   const iconLogo = curr?.username?.slice(0, 1).toUpperCase();
   const isDark = false;
 
@@ -123,24 +124,13 @@ const NavList = ({ closeDrawer, ...props }: NavListProps) => {
           {page.name}
         </Button>
       ))}
-      {!currentUser ? (
-        <Button
-          sx={{
-            color: { xs: "primary", sm: "white" },
-          }}
-          component={RouterLink}
-          to="/login"
-          onClick={closeDrawer}
-        >
-          Login
-        </Button>
-      ) : (
-        <Button onClick={handleAvtarClick}>
-          <Avatar sx={{ bgcolor: deepOrange[500] }} alt="User Image">
-            {iconLogo}
-          </Avatar>
-        </Button>
-      )}
+
+      <Button onClick={handleAvtarClick}>
+        <Avatar sx={{ bgcolor: deepOrange[500] }} alt="User Image">
+          {iconLogo}
+        </Avatar>
+      </Button>
+
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem onClick={handleChange}>
           <Stack

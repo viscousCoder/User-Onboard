@@ -60,6 +60,7 @@ const VerifyEmail = () => {
         // request
         const response = await postRequest(
           `https://user-onboard.onrender.com/verify-email`,
+          // `http://localhost:8000/verify-email`,
           JSON.stringify({ emailToken })
         );
         console.log(response, "response");
@@ -77,6 +78,7 @@ const VerifyEmail = () => {
     try {
       const response = await axios.post(
         "https://user-onboard.onrender.com/sendemail",
+        // "http://localhost:8000/sendemail",
         {
           emailToken: userEmailToken,
         }

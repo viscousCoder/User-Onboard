@@ -3,6 +3,7 @@ const nodemailer = require("nodemailer");
 const SENDEREMAIL = process.env.SENDEREMAIL;
 const USERPASSWORD = process.env.USERPASSWORD;
 const createMailTransporter = () => {
+  console.log("aman2");
   const transporter = nodemailer.createTransport({
     service: "hotmail",
     auth: {
