@@ -44,7 +44,7 @@ async function handleCreateLinkToken(req, res) {
 //get access token
 async function handleGetAccessToken(req, res) {
   const userId = req.body.userId;
-  console.log(userId, typeof userId, "Hiii");
+  // console.log(userId, typeof userId, "Hiii");
   try {
     const publicToken = req.body.publicToken;
     const response = await client.itemPublicTokenExchange({
@@ -61,13 +61,13 @@ async function handleGetAccessToken(req, res) {
     if (!updatedUser) {
       return res.status(404).json({ error: "User not found" });
     }
-    console.log(response.data, "hiii");
+    // console.log(response.data, "hiii");
     res.json({
       accessToken: response.data.access_token,
       itemId: response.data.item_id,
     });
   } catch (error) {
-    console.log("error", error);
+    // console.log("error", error);
     res.json({ error: error.message });
   }
 }
@@ -75,9 +75,9 @@ async function handleGetAccessToken(req, res) {
 //get auth
 async function handleGetAuth(req, res, next) {
   try {
-    console.log(req.headers);
+    // console.log(req.headers);
     const accessToken = req.headers.accesstoken;
-    console.log(accessToken, "helo  ");
+    // console.log(accessToken, "helo  ");
     if (!accessToken) {
       return res.status(400).json({ error: "Access token is required" });
     }

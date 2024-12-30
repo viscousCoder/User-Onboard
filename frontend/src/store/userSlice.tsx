@@ -28,9 +28,12 @@ export const getCurrentUser = createAsyncThunk(
       return rejectWithValue("Invalid or missing token");
     }
     try {
-      const response = await axios.get("http://localhost:8000/userData", {
-        headers: { token: token },
-      });
+      const response = await axios.get(
+        "https://user-onboard.onrender.com/userData",
+        {
+          headers: { token: token },
+        }
+      );
 
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("accessToken", response.data.user.accessToken);

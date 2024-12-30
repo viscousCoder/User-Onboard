@@ -59,7 +59,7 @@ const VerifyEmail = () => {
       if (emailToken) {
         // request
         const response = await postRequest(
-          `http://localhost:8000/verify-email`,
+          `https://user-onboard.onrender.com/verify-email`,
           JSON.stringify({ emailToken })
         );
         console.log(response, "response");
@@ -75,9 +75,12 @@ const VerifyEmail = () => {
 
   async function handlemail() {
     try {
-      const response = await axios.post("http://localhost:8000/sendemail", {
-        emailToken: userEmailToken,
-      });
+      const response = await axios.post(
+        "https://user-onboard.onrender.com/sendemail",
+        {
+          emailToken: userEmailToken,
+        }
+      );
       if (response.status == 200) {
         toast.success("verifiaction email sent");
         navigate("/");

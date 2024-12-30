@@ -83,7 +83,7 @@
 //       console.log("Form Submitted Successfully", formValues);
 //       // calling the psot api
 //       try {
-//         const response = await axios.post("http://localhost:8000/signup", {
+//         const response = await axios.post("https://user-onboard.onrender.com/signup", {
 //           username: formValues.username,
 //           email: formValues.email,
 //           password: formValues.password,
@@ -107,14 +107,14 @@
 //   };
 
 //   // const googleAuth = () => {
-//   //   window.open("http://localhost:8000/auth/google/callback", "_self");
+//   //   window.open("https://user-onboard.onrender.com/auth/google/callback", "_self");
 //   // };
 //   const google = () => {
-//     window.open("http://localhost:8000/auth/google", "_self");
+//     window.open("https://user-onboard.onrender.com/auth/google", "_self");
 //   };
 
 //   // const loginwithgoogle = () => {
-//   //   window.open("http://localhost:8000/auth/google/callback", "_self");
+//   //   window.open("https://user-onboard.onrender.com/auth/google/callback", "_self");
 //   // };
 //   return (
 //     <form onSubmit={handleSubmit} method="post">
@@ -373,7 +373,7 @@ const RegisterForm: React.FC = () => {
       console.log("Form Submitted Successfully", formValues);
       try {
         const response = await axios.post(
-          "http://localhost:8000/signup",
+          "https://user-onboard.onrender.com/signup",
           formValues
         );
         if (response.status === 201) {
@@ -393,12 +393,12 @@ const RegisterForm: React.FC = () => {
   };
 
   const google = () => {
-    window.open("http://localhost:8000/auth/google", "_self");
+    window.open("https://user-onboard.onrender.com/auth/google", "_self");
   };
 
   // const getUser = async () => {
   //   try {
-  //     const response = await axios.get("http://localhost:8000/login/success", {
+  //     const response = await axios.get("https://user-onboard.onrender.com/login/success", {
   //       withCredentials: true,
   //     });
   //     // console.log(response.data.user._id, "Data");

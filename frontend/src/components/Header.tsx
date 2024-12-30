@@ -74,9 +74,12 @@ const NavList = ({ closeDrawer, ...props }: NavListProps) => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/logout", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        "https://user-onboard.onrender.com/logout",
+        {
+          withCredentials: true,
+        }
+      );
 
       if (response.status === 200) {
         console.log("Logout successful");
@@ -220,9 +223,12 @@ const Header = () => {
 
   const getUser = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/login/success", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        "https://user-onboard.onrender.com/login/success",
+        {
+          withCredentials: true,
+        }
+      );
       // console.log(response.data.user._id, "Data");
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("accessToken", response.data.user.accessToken);
@@ -236,7 +242,7 @@ const Header = () => {
   };
   // const getCurrentUser = async () => {
   //   try {
-  //     const response = await axios.get("http://localhost:8000/userData", {
+  //     const response = await axios.get("https://user-onboard.onrender.com/userData", {
   //       headers: { token: token },
   //     });
   //     // console.log(response.data.user._id, "Data");

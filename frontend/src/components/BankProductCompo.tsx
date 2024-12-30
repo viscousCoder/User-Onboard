@@ -281,7 +281,8 @@ const BankProductCompo: React.FC = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:8000/${product.endpoint}`,
+        `https://user-onboard.onrender.com/${product.endpoint}`,
+        // `http://localhost:8000/${product.endpoint}`,
         {
           headers: {
             accessToken: accessToken as string,

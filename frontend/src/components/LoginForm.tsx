@@ -72,10 +72,13 @@ const LoginForm: React.FC = () => {
     if (validate()) {
       console.log("Form Submitted Successfully", formValues);
       try {
-        const response = await axios.post("http://localhost:8000/signin", {
-          email: formValues.email,
-          password: formValues.password,
-        });
+        const response = await axios.post(
+          "https://user-onboard.onrender.com/signin",
+          {
+            email: formValues.email,
+            password: formValues.password,
+          }
+        );
         if (response.status == 200) {
           toast.success("SignIn successfully");
           localStorage.setItem("token", response.data.token);
@@ -89,14 +92,17 @@ const LoginForm: React.FC = () => {
   };
 
   const googleAuth = () => {
-    window.open("http://localhost:8000/auth/google", "_self");
+    window.open("https://user-onboard.onrender.com/auth/google", "_self");
   };
 
   const getUser = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/login/success", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        "https://user-onboard.onrender.com/login/success",
+        {
+          withCredentials: true,
+        }
+      );
       // console.log(response.data.user._id, "Data");
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("accessToken", response.data.user.accessToken);

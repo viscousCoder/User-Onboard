@@ -13,9 +13,9 @@ async function handleCreateToken(user) {
 }
 
 async function handleCheckToken(token) {
-  console.log(token);
+  // console.log(token);
   const payload = JWT.verify(token, secret);
-  console.log(payload);
+  // console.log(payload);
   return payload;
 }
 

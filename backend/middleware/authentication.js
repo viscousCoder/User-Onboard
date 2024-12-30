@@ -17,10 +17,10 @@
 
 // module.exports = { checkForAuthenticationCookie };
 
-const { handleCheckToken } = require("../services/token");
-async function checkAuthentication(){
-    return (req,res,next)=>{
-        const token = req.headers.authorization
-        if()
-    }
-}
+// const { handleCheckToken } = require("../services/token");
+// async function checkAuthentication(){
+//     return (req,res,next)=>{
+//         const token = req.headers.authorization
+//         if()
+//     }
+// }

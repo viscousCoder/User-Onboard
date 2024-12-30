@@ -64,7 +64,7 @@ async function handleSendVerificationEmail(req, res) {
     const emailToken = req.body.emailToken;
     if (!emailToken) return res.status(404).json("Email token not found....");
     const user = await User.findOne({ emailToken });
-    console.log(user, "verification");
+    // console.log(user, "verification");
     sendVerificationMail(user);
     res.status(200).send("successfully send email");
   } catch (error) {
@@ -78,7 +78,7 @@ async function handleVerifyEmail(req, res) {
   try {
     // console.log(req.body);
     const emailToken = req.body.emailToken;
-    console.log(emailToken);
+    // console.log(emailToken);
     if (!emailToken) return res.status(404).json("Email token not found....");
     const user = await User.findOne({ emailToken });
     if (user) {

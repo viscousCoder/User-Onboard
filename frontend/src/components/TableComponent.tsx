@@ -10,11 +10,14 @@ export default function TableComponent() {
   const [tableData, setTableData] = React.useState<any[]>([]);
   async function getTableData() {
     try {
-      const response = await axios.get("http://localhost:8000/table/data", {
-        headers: {
-          token: token,
-        },
-      });
+      const response = await axios.get(
+        "https://user-onboard.onrender.com/table/data",
+        {
+          headers: {
+            token: token,
+          },
+        }
+      );
       console.log(response.data.data);
       setTableData(response.data.data);
     } catch (error) {
@@ -135,7 +138,7 @@ const VerifyEmail = () => {
 
   async function handlemail() {
     try {
-      const response = await axios.post("http://localhost:8000/sendemail", {
+      const response = await axios.post("https://user-onboard.onrender.com/sendemail", {
         emailToken,
       });
       if (response.status == 200) {
