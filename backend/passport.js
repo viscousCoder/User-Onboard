@@ -50,13 +50,15 @@ passport.use(
 
 // Serialize user for session support
 passport.serializeUser((user, done) => {
-  done(null, user);
+  console.log(user.id, "This is here");
+  done(null, user.id);
 });
 
 // Deserialize user from session
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findById(id);
+    console.log(user, "this is desrial");
     done(null, user);
   } catch (err) {
     done(err, null);

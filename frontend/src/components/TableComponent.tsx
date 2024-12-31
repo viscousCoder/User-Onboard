@@ -6,13 +6,16 @@ import DataGridToolbar from "./DataGridToolbar";
 import { Button } from "@mui/material";
 
 export default function TableComponent() {
+  const apiuri = import.meta.env.VITE_SECRET_API_URL;
+
   const token = localStorage.getItem("token");
   const [tableData, setTableData] = React.useState<any[]>([]);
   async function getTableData() {
     try {
       const response = await axios.get(
+        `${apiuri}/table/data`,
         // "http://localhost:8000/table/data",
-        "https://user-onboard.onrender.com/table/data",
+        // "https://user-onboard.onrender.com/table/data",
         {
           headers: {
             token: token,

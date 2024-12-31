@@ -20,6 +20,7 @@ interface UserState {
   user: User | null;
   error: string;
 }
+const apiuri = import.meta.env.VITE_SECRET_API_URL;
 
 export const getCurrentUser = createAsyncThunk(
   "user/getCurrentUser",
@@ -29,8 +30,9 @@ export const getCurrentUser = createAsyncThunk(
     }
     try {
       const response = await axios.get(
+        `${apiuri}/userData`,
         // "http://localhost:8000/userData",
-        "https://user-onboard.onrender.com/userData",
+        // "https://user-onboard.onrender.com/userData",
         {
           headers: { token: token },
         }

@@ -38,13 +38,14 @@ connectionDB(process.env.MONGO_URL).then(() =>
 // );
 app.use(
   session({
-    secret: "celestial", // Use a more secure, random string in production
+    secret: "celestial",
     resave: false,
     saveUninitialized: true,
     cookie: {
       maxAge: 24 * 60 * 60 * 1000, // Session expiration time (1 day)
       httpOnly: true, // Make cookie HTTP-only to avoid JS access
-      secure: false, // Set to true in production with HTTPS
+      secure: true, // Set to true in production with HTTPS
+      sameSite: "none",
     },
   })
 );

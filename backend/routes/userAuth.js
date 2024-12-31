@@ -35,6 +35,8 @@ router.get(
   passport.authenticate("google", {
     successRedirect: "https://useronboarding01.netlify.app/",
     failureRedirect: "https://useronboarding01.netlify.app/login",
+    // successRedirect: "http://localhost:5173/",
+    // failureRedirect: "http://localhost:5173/login",
   })
 );
 

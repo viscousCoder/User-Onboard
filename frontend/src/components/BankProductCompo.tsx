@@ -267,6 +267,7 @@ export interface AuthData {
 
 const BankProductCompo: React.FC = () => {
   const user = useSelector<RootState>((state) => state.user.user?.accessToken);
+  const apiuri = import.meta.env.VITE_SECRET_API_URL;
 
   const [visibleTable, setVisibleTable] = useState<number | null>(null);
   const [tableData, setTableData] = useState<any[]>([]);
@@ -281,7 +282,8 @@ const BankProductCompo: React.FC = () => {
 
     try {
       const response = await axios.get(
-        `https://user-onboard.onrender.com/${product.endpoint}`,
+        `${apiuri}/${product.endpoint}`,
+        // `https://user-onboard.onrender.com/${product.endpoint}`,
         // `http://localhost:8000/${product.endpoint}`,
         {
           headers: {

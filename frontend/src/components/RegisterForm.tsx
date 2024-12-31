@@ -227,6 +227,8 @@ import { toast } from "react-toastify";
 import Image from "../assets/google.png";
 
 const RegisterForm: React.FC = () => {
+  const apiuri = import.meta.env.VITE_SECRET_API_URL;
+
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     username: "",
@@ -373,8 +375,9 @@ const RegisterForm: React.FC = () => {
       console.log("Form Submitted Successfully", formValues);
       try {
         const response = await axios.post(
+          `${apiuri}/signup`,
           // "http://localhost:8000/signup",
-          "https://user-onboard.onrender.com/signup",
+          // "https://user-onboard.onrender.com/signup",
           formValues
         );
         if (response.status === 201) {
@@ -395,7 +398,8 @@ const RegisterForm: React.FC = () => {
 
   const google = () => {
     // window.open("http://localhost:8000/auth/google", "_self");
-    window.open("https://user-onboard.onrender.com/auth/google", "_self");
+    // window.open("https://user-onboard.onrender.com/auth/google", "_self");
+    window.open(`${apiuri}/auth/google`, "_self");
   };
 
   // const getUser = async () => {

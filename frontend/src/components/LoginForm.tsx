@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 import Image from "../assets/google.png";
 
 const LoginForm: React.FC = () => {
+  // const apiuri = import.meta.env.VITE_SECRET_API_URL;
+
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     email: "",
@@ -73,6 +75,7 @@ const LoginForm: React.FC = () => {
       console.log("Form Submitted Successfully", formValues);
       try {
         const response = await axios.post(
+          // `${apiuri}/signin`,
           // "http://localhost:8000/signin",
           "https://user-onboard.onrender.com/signin",
           {
@@ -95,6 +98,7 @@ const LoginForm: React.FC = () => {
   const googleAuth = () => {
     // window.open("http://localhost:8000/auth/google", "_self");
     window.open("https://user-onboard.onrender.com/auth/google", "_self");
+    // window.open(`${apiuri}/auth/google`, "_self");
   };
 
   const getUser = async () => {
@@ -102,6 +106,7 @@ const LoginForm: React.FC = () => {
       const response = await axios.get(
         // "http://localhost:8000/login/success",
         "https://user-onboard.onrender.com/login/success",
+        // `${apiuri}login/success`,
         {
           withCredentials: true,
         }

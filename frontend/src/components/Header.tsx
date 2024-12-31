@@ -46,6 +46,8 @@ interface NavListProps {
 }
 
 const NavList = ({ closeDrawer, ...props }: NavListProps) => {
+  const apiuri = import.meta.env.VITE_SECRET_API_URL;
+
   const navigate = useNavigate();
   // const [currentUser, setCurrentUser] = useState<string | null>(null);
 
@@ -78,8 +80,9 @@ const NavList = ({ closeDrawer, ...props }: NavListProps) => {
   const handleLogout = async () => {
     try {
       const response = await axios.get(
+        `${apiuri}/logout`,
         // "http://localhost:8000/logout",
-        "https://user-onboard.onrender.com/logout",
+        // "https://user-onboard.onrender.com/logout",
         {
           withCredentials: true,
         }
@@ -213,11 +216,13 @@ const Header = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   // const user = useSelector<RootState>((state) => state.user.user?.isVerified);
+  const apiuri = import.meta.env.VITE_SECRET_API_URL;
 
   const getUser = async () => {
     try {
       const response = await axios.get(
-        "https://user-onboard.onrender.com/login/success",
+        `${apiuri}/success`,
+        // "https://user-onboard.onrender.com/login/success",
         // "http://localhost:8000/login/success",
         {
           withCredentials: true,

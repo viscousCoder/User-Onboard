@@ -18,6 +18,8 @@ interface User {
 }
 
 const VerifyEmail = () => {
+  const apiuri = import.meta.env.VITE_SECRET_API_URL;
+
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const user = useSelector<RootState, User | null>((state) => state.user.user);
@@ -59,7 +61,8 @@ const VerifyEmail = () => {
       if (emailToken) {
         // request
         const response = await postRequest(
-          `https://user-onboard.onrender.com/verify-email`,
+          `${apiuri}/verify-email`,
+          // `https://user-onboard.onrender.com/verify-email`,
           // `http://localhost:8000/verify-email`,
           JSON.stringify({ emailToken })
         );
@@ -77,7 +80,8 @@ const VerifyEmail = () => {
   async function handlemail() {
     try {
       const response = await axios.post(
-        "https://user-onboard.onrender.com/sendemail",
+        `${apiuri}/sendemail`,
+        // "https://user-onboard.onrender.com/sendemail",
         // "http://localhost:8000/sendemail",
         {
           emailToken: userEmailToken,

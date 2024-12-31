@@ -89,6 +89,8 @@ import { AppDispatch } from "../store/store";
 import { getCurrentUser } from "../store/userSlice";
 
 const BankComponent = () => {
+  // console.log(import.meta.env.VITE_SECRET_API_URL);
+  const apiuri = import.meta.env.VITE_SECRET_API_URL;
   const [token, setToken] = useState<string | null>(null); // State to hold the accessToken
   const userId = localStorage.getItem("userId") || undefined;
   const tokenUser = localStorage.getItem("token") || undefined;
@@ -104,10 +106,7 @@ const BankComponent = () => {
   const linkAccount = async () => {
     try {
       // Request to create a link token
-      const response = await axios.post(
-        // "http://localhost:8000/create_link_token"
-        "https://user-onboard.onrender.com/create_link_token"
-      );
+      const response = await axios.post(`${apiuri}/create_link_token`);
       const { link_token: linkToken } = response.data;
       console.log("Link Token:", linkToken);
 
@@ -117,8 +116,9 @@ const BankComponent = () => {
           try {
             // Exchange public token for access token
             const res = await axios.post(
+              `${apiuri}/get_access_token`,
               // "http://localhost:8000/get_access_token",
-              "https://user-onboard.onrender.com/get_access_token",
+              // "https://user-onboard.onrender.com/get_access_token",
               { publicToken, userId: userId }, // Pass publicToken and userId
               { headers: { "Content-Type": "application/json" } }
             );

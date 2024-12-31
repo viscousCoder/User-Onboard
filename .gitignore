@@ -4,6 +4,7 @@
 
 # Ignore .env files for both client and server
 /backend/.env
+/frontend/.env
 test
 # /backend/passport.js
 
