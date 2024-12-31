@@ -104,9 +104,7 @@ const LoginForm: React.FC = () => {
   const getUser = async () => {
     try {
       const response = await axios.get(
-        // "http://localhost:8000/login/success",
         "https://user-onboard.onrender.com/login/success",
-        // `${apiuri}login/success`,
         {
           withCredentials: true,
         }
