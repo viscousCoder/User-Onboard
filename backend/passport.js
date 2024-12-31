@@ -12,10 +12,12 @@ if (!process.env.GOOGLECLIENTID || !process.env.GOOGLECLIENTSECRET) {
 passport.use(
   new GoogleStrategy(
     {
+      // clientID: GOOGLE_CLIENT_ID,
+      // clientSecret: GOOGLE_CLIENT_SECRET,
       clientID: process.env.GOOGLECLIENTID,
       clientSecret: process.env.GOOGLECLIENTSECRET,
       callbackURL: "https://user-onboard.onrender.com/auth/google/callback",
-      // callbackURL: "/auth/google/callback",
+      // callbackURL: "http://localhost:8000/auth/google/callback",
       prompt: "select_account",
     },
     async (accessToken, refreshToken, profile, cb) => {

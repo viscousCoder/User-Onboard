@@ -11,6 +11,7 @@ export default function TableComponent() {
   async function getTableData() {
     try {
       const response = await axios.get(
+        // "http://localhost:8000/table/data",
         "https://user-onboard.onrender.com/table/data",
         {
           headers: {

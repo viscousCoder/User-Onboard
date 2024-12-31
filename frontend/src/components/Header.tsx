@@ -78,6 +78,7 @@ const NavList = ({ closeDrawer, ...props }: NavListProps) => {
   const handleLogout = async () => {
     try {
       const response = await axios.get(
+        // "http://localhost:8000/logout",
         "https://user-onboard.onrender.com/logout",
         {
           withCredentials: true,
@@ -217,6 +218,7 @@ const Header = () => {
     try {
       const response = await axios.get(
         "https://user-onboard.onrender.com/login/success",
+        // "http://localhost:8000/login/success",
         {
           withCredentials: true,
         }
