@@ -30,24 +30,24 @@ router.get(
   })
 );
 
-// router.get(
-//   "/auth/google/callback",
-//   passport.authenticate("google", {
-//     successRedirect: "https://useronboarding01.netlify.app/",
-//     failureRedirect: "https://useronboarding01.netlify.app/login",
-//     // successRedirect: "http://localhost:5173/",
-//     // failureRedirect: "http://localhost:5173/login",
-//   })
-// );
 router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
+    successRedirect: "https://useronboarding01.netlify.app/",
     failureRedirect: "https://useronboarding01.netlify.app/login",
-  }),
-  (req, res) => {
-    res.redirect("https://useronboarding01.netlify.app/");
-  }
+    // successRedirect: "http://localhost:5173/",
+    // failureRedirect: "http://localhost:5173/login",
+  })
 );
+// router.get(
+//   "/auth/google/callback",
+//   passport.authenticate("google", {
+//     failureRedirect: "https://useronboarding01.netlify.app/login",
+//   }),
+//   (req, res) => {
+//     res.redirect("https://useronboarding01.netlify.app/");
+//   }
+// );
 
 // router.get("/login/success", async (req, res) => {
 //   console.log("Login api inside Session:", req.session);
@@ -62,8 +62,9 @@ router.get(
 //   }
 // });
 router.get("/login/success", async (req, res) => {
-  console.log("Insidesuccess Session Details: ", req.session);
-  console.log("Insidesuccess Passport User:", req.user);
+  // console.log("Insidesuccess Session Details: ", req.session);
+  // console.log("Insidesuccess Passport User:", req.user);
+  console.log("inside success");
   if (req.user) {
     const token = await handleCreateToken(req.user);
     return res

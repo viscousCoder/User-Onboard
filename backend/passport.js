@@ -19,6 +19,7 @@ passport.use(
       prompt: "select_account",
     },
     async (accessToken, refreshToken, profile, cb) => {
+      console.log("Inside passport use");
       try {
         // Check if the user already exists
         let user = await User.findOne({ googleId: profile.id });
@@ -65,9 +66,9 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (id, done) => {
   console.log("this inside Deserial");
   try {
-    console.log("Deserializing User ID:", id);
+    // console.log("Deserializing User ID:", id);
     const user = await User.findById(id);
-    console.log("Deserialized User:", user);
+    // console.log("Deserialized User:", user);
     done(null, user);
   } catch (err) {
     console.error("Error during deserialization:", err);
