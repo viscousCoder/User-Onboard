@@ -76,8 +76,8 @@ const LoginForm: React.FC = () => {
       try {
         const response = await axios.post(
           // `${apiuri}/signin`,
-          // "http://localhost:8000/signin",
-          "https://user-onboard.onrender.com/signin",
+          "http://localhost:8000/signin",
+          // "https://user-onboard.onrender.com/signin",
           {
             email: formValues.email,
             password: formValues.password,
@@ -96,8 +96,8 @@ const LoginForm: React.FC = () => {
   };
 
   const googleAuth = () => {
-    // window.open("http://localhost:8000/auth/google", "_self");
-    window.open("https://user-onboard.onrender.com/auth/google", "_self");
+    window.open("http://localhost:8000/auth/google", "_self");
+    // window.open("https://user-onboard.onrender.com/auth/google", "_self");
     // window.open(`${apiuri}/auth/google`, "_self");
   };
 
@@ -112,8 +112,8 @@ const LoginForm: React.FC = () => {
       // console.log(response.data.user._id, "Data");
 
       const response = await axios.get(
-        // "http://localhost:8000/login/success",
-        "https://user-onboard.onrender.com/login/success",
+        "http://localhost:8000/login/success",
+        // "https://user-onboard.onrender.com/login/success",
         { withCredentials: true }
       );
       localStorage.setItem("token", response.data.token);
