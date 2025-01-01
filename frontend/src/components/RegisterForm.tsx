@@ -227,7 +227,7 @@ import { toast } from "react-toastify";
 import Image from "../assets/google.png";
 
 const RegisterForm: React.FC = () => {
-  const apiuri = import.meta.env.VITE_SECRET_API_URL;
+  // const apiuri = import.meta.env.VITE_SECRET_API_URL;
 
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
