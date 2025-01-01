@@ -3,7 +3,6 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
-const cookieSession = require("cookie-session");
 const session = require("express-session");
 require("./passport");
 
@@ -65,7 +64,7 @@ app.use(
       maxAge: 24 * 60 * 60 * 1000,
       httpOnly: true,
       secure: false,
-      sameSite: "lax",
+      sameSite: "none",
     },
   })
 );
@@ -73,7 +72,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
-  console.log("Session Middleware Check::", req.session);
+  console.log("Session Cookie: index ", req.cookies);
+
   next();
 });
 
