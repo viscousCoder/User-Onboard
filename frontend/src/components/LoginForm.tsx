@@ -16,7 +16,6 @@ import Image from "../assets/google.png";
 
 const LoginForm: React.FC = () => {
   const apiuri = import.meta.env.VITE_SECRET_API_URL;
-  console.log(apiuri);
 
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
@@ -113,9 +112,8 @@ const LoginForm: React.FC = () => {
       // console.log(response.data.user._id, "Data");
 
       const response = await axios.get(
-        `${apiuri}/login/success`,
         // "http://localhost:8000/login/success",
-        // "https://user-onboard.onrender.com/login/success",
+        "https://user-onboard.onrender.com/login/success",
         { withCredentials: true }
       );
       localStorage.setItem("token", response.data.token);
