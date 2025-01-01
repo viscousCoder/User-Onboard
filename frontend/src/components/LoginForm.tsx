@@ -103,13 +103,18 @@ const LoginForm: React.FC = () => {
 
   const getUser = async () => {
     try {
+      // const response = await axios.get(
+      //   "https://user-onboard.onrender.com/login/success",
+      //   {
+      //     withCredentials: true,
+      //   }
+      // );
+      // console.log(response.data.user._id, "Data");
+
       const response = await axios.get(
         "https://user-onboard.onrender.com/login/success",
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
-      // console.log(response.data.user._id, "Data");
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("accessToken", response.data.user.accessToken);
       localStorage.setItem("itemId", response.data.user.itemId);

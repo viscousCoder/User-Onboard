@@ -53,12 +53,24 @@ passport.serializeUser((user, done) => {
 });
 
 // Deserialize user from session
+// passport.deserializeUser(async (id, done) => {
+//   try {
+//     const user = await User.findById(id);
+//     console.log(user, "this is desrial");
+//     done(null, user);
+//   } catch (err) {
+//     done(err, null);
+//   }
+// });
 passport.deserializeUser(async (id, done) => {
+  console.log("this inside Deserial");
   try {
+    console.log("Deserializing User ID:", id);
     const user = await User.findById(id);
-    console.log(user, "this is desrial");
+    console.log("Deserialized User:", user);
     done(null, user);
   } catch (err) {
+    console.error("Error during deserialization:", err);
     done(err, null);
   }
 });

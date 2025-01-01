@@ -24,6 +24,22 @@ connectionDB(process.env.MONGO_URL).then(() =>
   console.log("MongoDB connected successfull")
 );
 
+// app.use(
+//   cors({
+//     // origin: "http://localhost:5173",
+//     origin: "https://useronboarding01.netlify.app",
+//     methods: "GET,POST,PUT,DELETE",
+//     credentials: true,
+//   })
+// );
+app.use(
+  cors({
+    origin: "https://useronboarding01.netlify.app",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true, // Enable cookies
+  })
+);
+
 //middleware
 
 // app.use(
@@ -48,24 +64,16 @@ app.use(
     cookie: {
       maxAge: 24 * 60 * 60 * 1000,
       httpOnly: true,
-      secure: true,
-      sameSite: "none",
+      secure: false,
+      sameSite: "lax",
     },
   })
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(
-  cors({
-    // origin: "http://localhost:5173",
-    origin: "https://useronboarding01.netlify.app",
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-  })
-);
 
 app.use((req, res, next) => {
-  console.log("Inside index Session:", req.session);
+  console.log("Session Middleware Check::", req.session);
   next();
 });
 

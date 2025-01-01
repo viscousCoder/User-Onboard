@@ -49,17 +49,28 @@ router.get(
   }
 );
 
+// router.get("/login/success", async (req, res) => {
+//   console.log("Login api inside Session:", req.session);
+//   console.log(" Success api call Session User:", req.user);
+//   if (req.user) {
+//     const token = await handleCreateToken(req.user);
+//     res
+//       .status(200)
+//       .json({ message: "user Login", user: req.user, token: token });
+//   } else {
+//     res.status(400).json({ message: "Not Authorized" });
+//   }
+// });
 router.get("/login/success", async (req, res) => {
-  console.log("Login api inside Session:", req.session);
-  console.log(" Success api call Session User:", req.user);
+  console.log("Insidesuccess Session Details: ", req.session);
+  console.log("Insidesuccess Passport User:", req.user);
   if (req.user) {
     const token = await handleCreateToken(req.user);
-    res
+    return res
       .status(200)
-      .json({ message: "user Login", user: req.user, token: token });
-  } else {
-    res.status(400).json({ message: "Not Authorized" });
+      .json({ message: "User Login", user: req.user, token });
   }
+  res.status(400).json({ message: "Not Authorized" });
 });
 
 // router.get("/logout", (req, res, next) => {
