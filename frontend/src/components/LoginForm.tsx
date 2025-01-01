@@ -15,7 +15,8 @@ import { useNavigate } from "react-router-dom";
 import Image from "../assets/google.png";
 
 const LoginForm: React.FC = () => {
-  // const apiuri = import.meta.env.VITE_SECRET_API_URL;
+  const apiuri = import.meta.env.VITE_SECRET_API_URL;
+  console.log(apiuri);
 
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
@@ -75,9 +76,9 @@ const LoginForm: React.FC = () => {
       console.log("Form Submitted Successfully", formValues);
       try {
         const response = await axios.post(
-          // `${apiuri}/signin`,
+          `${apiuri}/signin`,
           // "http://localhost:8000/signin",
-          "https://user-onboard.onrender.com/signin",
+          // "https://user-onboard.onrender.com/signin",
           {
             email: formValues.email,
             password: formValues.password,
@@ -97,8 +98,8 @@ const LoginForm: React.FC = () => {
 
   const googleAuth = () => {
     // window.open("http://localhost:8000/auth/google", "_self");
-    window.open("https://user-onboard.onrender.com/auth/google", "_self");
-    // window.open(`${apiuri}/auth/google`, "_self");
+    // window.open("https://user-onboard.onrender.com/auth/google", "_self");
+    window.open(`${apiuri}/auth/google`, "_self");
   };
 
   const getUser = async () => {
@@ -112,8 +113,9 @@ const LoginForm: React.FC = () => {
       // console.log(response.data.user._id, "Data");
 
       const response = await axios.get(
+        `${apiuri}/login/success`,
         // "http://localhost:8000/login/success",
-        "https://user-onboard.onrender.com/login/success",
+        // "https://user-onboard.onrender.com/login/success",
         { withCredentials: true }
       );
       localStorage.setItem("token", response.data.token);
