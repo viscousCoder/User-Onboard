@@ -25,35 +25,34 @@ connectionDB(process.env.MONGO_URL).then(() =>
 );
 
 //middleware
+
 // app.use(
 //   session({
-//     secret: "celestial", // You should change this to a more secure, random string
-//     resave: false,
-//     saveUninitialized: true,
+//     secret: "celestial", // Secret key for signing the cookie
+//     resave: false, // Prevent resaving the session if it hasn't been modified
+//     saveUninitialized: true, // Save the session even if it hasn't been modified
 //     cookie: {
-//       maxAge: 24 * 60 * 60 * 1000, // Session expiration time (1 day)
-//       cookie: { secure: false },
+//       maxAge: 24 * 60 * 60 * 1000, // 1 day
+//       httpOnly: true, // Prevent JavaScript access to the cookie
+//       secure: true, // Set to true only for HTTPS (production)
+//       sameSite: "none", // Necessary for cross-origin requests (with cookies)
 //     },
 //   })
 // );
+
 app.use(
   session({
     secret: "celestial",
     resave: false,
     saveUninitialized: true,
     cookie: {
-      maxAge: 24 * 60 * 60 * 1000, // Session expiration time (1 day)
-      httpOnly: true, // Make cookie HTTP-only to avoid JS access
-      secure: true, // Set to true in production with HTTPS
+      maxAge: 24 * 60 * 60 * 1000,
+      httpOnly: true,
+      secure: true,
       sameSite: "none",
     },
   })
 );
-
-app.use((req, res, next) => {
-  console.log("Session:", req.session);
-  next();
-});
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(
@@ -64,6 +63,12 @@ app.use(
     credentials: true,
   })
 );
+
+app.use((req, res, next) => {
+  console.log("Inside index Session:", req.session);
+  next();
+});
+
 // app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

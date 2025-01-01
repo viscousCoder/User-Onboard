@@ -30,17 +30,28 @@ router.get(
   })
 );
 
+// router.get(
+//   "/auth/google/callback",
+//   passport.authenticate("google", {
+//     successRedirect: "https://useronboarding01.netlify.app/",
+//     failureRedirect: "https://useronboarding01.netlify.app/login",
+//     // successRedirect: "http://localhost:5173/",
+//     // failureRedirect: "http://localhost:5173/login",
+//   })
+// );
 router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: "https://useronboarding01.netlify.app/",
     failureRedirect: "https://useronboarding01.netlify.app/login",
-    // successRedirect: "http://localhost:5173/",
-    // failureRedirect: "http://localhost:5173/login",
-  })
+  }),
+  (req, res) => {
+    res.redirect("https://useronboarding01.netlify.app/");
+  }
 );
 
 router.get("/login/success", async (req, res) => {
+  console.log("Login api inside Session:", req.session);
+  console.log(" Success api call Session User:", req.user);
   if (req.user) {
     const token = await handleCreateToken(req.user);
     res
