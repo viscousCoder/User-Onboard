@@ -161,3 +161,4 @@ app.use("/", bankRouter);
 
 // Start the server
 app.listen(PORT, () => console.log(`Server is running at port ${PORT}`));
+// consoe
