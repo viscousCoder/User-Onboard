@@ -221,7 +221,7 @@ const Header = () => {
   const getUser = async () => {
     try {
       const response = await axios.get(
-        `${apiuri}/success`,
+        `${apiuri}/login/success`,
         // "https://user-onboard.onrender.com/login/success",
         // "http://localhost:8000/login/success",
         {
