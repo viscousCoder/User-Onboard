@@ -30,17 +30,17 @@ router.get(
   })
 );
 
-router.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "https://useronboardings.vercel.app/",
-    failureRedirect: "https://useronboardings.vercel.app/login",
-    // successRedirect: "https://useronboarding01.netlify.app/",
-    // failureRedirect: "https://useronboarding01.netlify.app/login",
-    // successRedirect: "http://localhost:5173/",
-    // failureRedirect: "http://localhost:5173/login",
-  })
-);
+// router.get(
+//   "/auth/google/callback",
+//   passport.authenticate("google", {
+//     // successRedirect: "https://useronboardings.vercel.app/",
+//     // failureRedirect: "https://useronboardings.vercel.app/login",
+//     successRedirect: "https://useronboarding01.netlify.app/login",
+//     failureRedirect: "https://useronboarding01.netlify.app/login",
+//     // successRedirect: "http://localhost:5173/",
+//     // failureRedirect: "http://localhost:5173/login",
+//   })
+// );
 // router.get(
 //   "/auth/google/callback",
 //   passport.authenticate("google", {
@@ -63,17 +63,61 @@ router.get(
 //     res.status(400).json({ message: "Not Authorized" });
 //   }
 // });
+
+// router.get("/login/success", async (req, res) => {
+//   // console.log("Insidesuccess Session Details: ", req.session);
+//   // console.log("Insidesuccess Passport User:", req.user);
+//   console.log("inside success");
+//   if (req.user) {
+//     const token = await handleCreateToken(req.user);
+//     return res
+//       .status(200)
+//       .json({ message: "User Login", user: req.user, token });
+//   }
+//   res.status(400).json({ message: "Not Authorized" });
+// });
+
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "https://useronboarding01.netlify.app/login",
+  }),
+  (req, res) => {
+    // console.log("username inside", );
+    const token = req.user.id; // Assuming `req.user` contains the token or user data
+    res.redirect(
+      `https://useronboarding01.netlify.app/login?token=${encodeURIComponent(
+        token
+      )}`
+    );
+  }
+);
+
 router.get("/login/success", async (req, res) => {
   // console.log("Insidesuccess Session Details: ", req.session);
   // console.log("Insidesuccess Passport User:", req.user);
-  console.log("inside success");
-  if (req.user) {
-    const token = await handleCreateToken(req.user);
+  // console.log("inside success", req.headers["x-googleuser"]);
+  // console.log(userId, isVerified, "Data");
+  let userId = req.headers["x-googleuser"];
+  let user = await User.findOne({ _id: userId });
+  // console.log(user, userId);
+  if (user) {
+    console.log("hello coder");
+    console.log("coder2");
+    const token = await handleCreateToken(user);
     return res
       .status(200)
       .json({ message: "User Login", user: req.user, token });
+  } else {
+    console.log("Coder");
+    if (req.user) {
+      const token = await handleCreateToken(req.user);
+      return res
+        .status(200)
+        .json({ message: "User Login", user: req.user, token });
+    }
+    res.status(400).json({ message: "Not Authorized" });
   }
-  res.status(400).json({ message: "Not Authorized" });
 });
 
 // router.get("/logout", (req, res, next) => {

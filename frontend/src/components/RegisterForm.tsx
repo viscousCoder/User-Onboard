@@ -377,8 +377,8 @@ const RegisterForm: React.FC = () => {
         const response = await axios.post(
           // `${apiuri}/signup`,
           // "http://localhost:8000/signup",
-          "https://useronboarding-tau.vercel.app/signup",
-          // "https://user-onboard.onrender.com/signup",
+          // "https://useronboarding-tau.vercel.app/signup",
+          "https://user-onboard.onrender.com/signup",
           formValues
         );
         if (response.status === 201) {
@@ -399,8 +399,8 @@ const RegisterForm: React.FC = () => {
 
   const google = () => {
     // window.open("http://localhost:8000/auth/google", "_self");
-    window.open("https://useronboarding-tau.vercel.app/auth/google", "_self");
-    // window.open("https://user-onboard.onrender.com/auth/google", "_self");
+    // window.open("https://useronboarding-tau.vercel.app/auth/google", "_self");
+    window.open("https://user-onboard.onrender.com/auth/google", "_self");
     // window.open(`${apiuri}/auth/google`, "_self");
   };
 

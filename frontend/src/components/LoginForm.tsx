@@ -11,11 +11,14 @@ import {
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Image from "../assets/google.png";
 
 const LoginForm: React.FC = () => {
   // const apiuri = import.meta.env.VITE_SECRET_API_URL;
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
+  console.log(token, "hii");
 
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
@@ -77,8 +80,8 @@ const LoginForm: React.FC = () => {
         const response = await axios.post(
           // `${apiuri}/signin`,
           // "http://localhost:8000/signin",
-          // "https://user-onboard.onrender.com/signin",
-          "https://useronboarding-tau.vercel.app/signin",
+          "https://user-onboard.onrender.com/signin",
+          // "https://useronboarding-tau.vercel.app/signin",
 
           {
             email: formValues.email,
@@ -99,10 +102,37 @@ const LoginForm: React.FC = () => {
 
   const googleAuth = () => {
     // window.open("http://localhost:8000/auth/google", "_self");
-    // window.open("https://user-onboard.onrender.com/auth/google", "_self");
-    window.open("https://useronboarding-tau.vercel.app/auth/google", "_self");
+    window.open("https://user-onboard.onrender.com/auth/google", "_self");
+    // window.open("https://useronboarding-tau.vercel.app/auth/google", "_self");
     // window.open(`${apiuri}/auth/google`, "_self");
   };
+
+  // const getUser = async () => {
+  //   try {
+  //     // const response = await axios.get(
+  //     //   "https://user-onboard.onrender.com/login/success",
+  //     //   {
+  //     //     withCredentials: true,
+  //     //   }
+  //     // );
+  //     // console.log(response.data.user._id, "Data");
+
+  //     const response = await axios.get(
+  //       // "http://localhost:8000/login/success",
+  //       "https://useronboarding-tau.vercel.app/login/success",
+  //       // "https://user-onboard.onrender.com/login/success",
+  //       { withCredentials: true }
+  //     );
+  //     localStorage.setItem("token", response.data.token);
+  //     localStorage.setItem("accessToken", response.data.user.accessToken);
+  //     localStorage.setItem("itemId", response.data.user.itemId);
+  //     localStorage.setItem("userId", response.data.user._id);
+  //     // setUserdata(response.data.user);
+  //     navigate("/");
+  //   } catch (error) {
+  //     console.log("error", error);
+  //   }
+  // };
 
   const getUser = async () => {
     try {
@@ -115,10 +145,15 @@ const LoginForm: React.FC = () => {
       // console.log(response.data.user._id, "Data");
 
       const response = await axios.get(
-        // "http://localhost:8000/login/success",
-        "https://useronboarding-tau.vercel.app/login/success",
-        // "https://user-onboard.onrender.com/login/success",
-        { withCredentials: true }
+        "https://user-onboard.onrender.com/login/success",
+        {
+          headers: {
+            "X-googleUser": token, // Use the Authorization header
+            "X-check": true,
+          },
+          // "https://user-onboard.onrender.com/login/success",
+          withCredentials: true,
+        }
       );
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("accessToken", response.data.user.accessToken);
@@ -133,7 +168,7 @@ const LoginForm: React.FC = () => {
 
   useEffect(() => {
     getUser();
-  });
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>
