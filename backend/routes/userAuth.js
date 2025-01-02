@@ -8,6 +8,7 @@ const {
   handleCurrentUserData,
 } = require("../controller/userAuth");
 const { handleCreateToken } = require("../services/token");
+const User = require("../model/user");
 
 const router = express.Router();
 
