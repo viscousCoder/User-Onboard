@@ -101,10 +101,6 @@ const LoginForm: React.FC = () => {
     // window.open(`${apiuri}/auth/google`, "_self");
   };
 
-  const axiosInstance = axios.create({
-    baseURL: "https://user-onboard.onrender.com",
-    withCredentials: true, // Ensures cookies are sent with requests
-  });
   const getUser = async () => {
     try {
       // const response = await axios.get(
@@ -115,13 +111,11 @@ const LoginForm: React.FC = () => {
       // );
       // console.log(response.data.user._id, "Data");
 
-      // const response = await axios.get(
-      //   // "http://localhost:8000/login/success",
-      //   "https://user-onboard.onrender.com/login/success",
-      //   { withCredentials: true }
-      // );
-
-      const response = await axiosInstance.get("/login/success");
+      const response = await axios.get(
+        // "http://localhost:8000/login/success",
+        "https://user-onboard.onrender.com/login/success",
+        { withCredentials: true }
+      );
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("accessToken", response.data.user.accessToken);
       localStorage.setItem("itemId", response.data.user.itemId);
