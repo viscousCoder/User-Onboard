@@ -32,11 +32,11 @@ const LoginForm: React.FC = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const localToken = localStorage.getItem("token");
+  // const localToken = localStorage.getItem("token");
   const [isLogin, setIsLogin] = useState(false);
-  if (localToken) {
-    navigate("/");
-  }
+  // if (localToken) {
+  //   navigate("/");
+  // }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
