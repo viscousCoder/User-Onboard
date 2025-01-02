@@ -35,7 +35,7 @@ const LoginForm: React.FC = () => {
   const localToken = localStorage.getItem("token");
   const [isLogin, setIsLogin] = useState(false);
   if (localToken) {
-    navigate("https://useronboarding01.netlify.app");
+    navigate("/");
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
