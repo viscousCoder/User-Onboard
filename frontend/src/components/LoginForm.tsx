@@ -155,12 +155,14 @@ const LoginForm: React.FC = () => {
           withCredentials: true,
         }
       );
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("accessToken", response.data.user.accessToken);
-      localStorage.setItem("itemId", response.data.user.itemId);
-      localStorage.setItem("userId", response.data.user._id);
-      // setUserdata(response.data.user);
-      navigate("/");
+      if (response.status == 200) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("accessToken", response.data.user.accessToken);
+        localStorage.setItem("itemId", response.data.user.itemId);
+        localStorage.setItem("userId", response.data.user._id);
+        // setUserdata(response.data.user);
+        navigate("/");
+      }
     } catch (error) {
       console.log("error", error);
     }
