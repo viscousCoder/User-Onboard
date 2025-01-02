@@ -132,10 +132,13 @@ app.use(
     secret: "celestial", // Use a more secure, random string in production
     resave: false,
     saveUninitialized: true,
+    proxy: true,
+    rolling: true,
     cookie: {
       maxAge: 24 * 60 * 60 * 1000, // Session expiration time (1 day)
       httpOnly: true, // Make cookie HTTP-only to avoid JS access
       secure: true, // Set to true in production with HTTPS
+      sameSite: "lax",
     },
   })
 );
@@ -144,7 +147,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    // origin: "http://localhost:5173",
     origin: "https://useronboarding01.netlify.app",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
