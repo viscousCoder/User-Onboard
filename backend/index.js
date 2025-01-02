@@ -157,7 +157,7 @@ app.use(
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use((req, res, next) => {
-  console.log("Session Cookie: index ", req.headers.cookie); // Log cookies for debugging
+  console.log("Session Cookie: index ", req); // Log cookies for debugging
   next();
 });
 
