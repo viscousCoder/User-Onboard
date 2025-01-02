@@ -87,9 +87,7 @@ router.get(
     // console.log("username inside", );
     const token = req.user.id; // Assuming `req.user` contains the token or user data
     res.redirect(
-      `https://useronboarding01.netlify.app/login?token=${encodeURIComponent(
-        token
-      )}`
+      `https://useronboarding01.netlify.app?token=${encodeURIComponent(token)}`
     );
   }
 );
