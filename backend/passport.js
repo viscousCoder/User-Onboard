@@ -50,7 +50,7 @@ passport.use(
 // Serialize user for session support
 passport.serializeUser((user, done) => {
   console.log(user.id, "This is here");
-  done(null, user.id);
+  done(null, user);
 });
 
 // Deserialize user from session
@@ -63,17 +63,18 @@ passport.serializeUser((user, done) => {
 //     done(err, null);
 //   }
 // });
-passport.deserializeUser(async (id, done) => {
+passport.deserializeUser(async (user, done) => {
   console.log("this inside Deserial");
-  try {
-    // console.log("Deserializing User ID:", id);
-    const user = await User.findById(id);
-    // console.log("Deserialized User:", user);
-    done(null, user);
-  } catch (err) {
-    console.error("Error during deserialization:", err);
-    done(err, null);
-  }
+  done(null, user);
+  // try {
+  //   // console.log("Deserializing User ID:", id);
+  //   const user = await User.findById(id);
+  //   // console.log("Deserialized User:", user);
+  //   done(null, user);
+  // } catch (err) {
+  //   console.error("Error during deserialization:", err);
+  //   done(err, null);
+  // }
 });
 
 module.exports = passport;
