@@ -168,7 +168,7 @@ const LoginForm: React.FC = () => {
 
   useEffect(() => {
     getUser();
-  }, []);
+  });
 
   return (
     <form onSubmit={handleSubmit}>
