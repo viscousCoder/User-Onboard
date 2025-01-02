@@ -33,7 +33,7 @@ router.get(
 router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: "https://useronboardings.vercel.app/login/",
+    successRedirect: "https://useronboardings.vercel.app/",
     failureRedirect: "https://useronboardings.vercel.app/login",
     // successRedirect: "https://useronboarding01.netlify.app/",
     // failureRedirect: "https://useronboarding01.netlify.app/login",
