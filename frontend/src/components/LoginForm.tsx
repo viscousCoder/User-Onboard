@@ -32,6 +32,11 @@ const LoginForm: React.FC = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const localToken = localStorage.getItem("token");
+  const [isLogin, setIsLogin] = useState(false);
+  if (localToken) {
+    navigate("https://useronboarding01.netlify.app");
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -155,13 +160,15 @@ const LoginForm: React.FC = () => {
           withCredentials: true,
         }
       );
-      if (response.status == 200) {
+      if (response.status == 200 || response.data.message == "User Login") {
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("accessToken", response.data.user.accessToken);
-        localStorage.setItem("itemId", response.data.user.itemId);
-        localStorage.setItem("userId", response.data.user._id);
+
+        // localStorage.setItem("accessToken", response.data.user.accessToken);
+        // localStorage.setItem("itemId", response.data.user.itemId);
+        // localStorage.setItem("userId", response.data.user._id);
         // setUserdata(response.data.user);
         navigate("/");
+        setIsLogin((prev) => !prev);
       }
     } catch (error) {
       console.log("error", error);
@@ -170,7 +177,7 @@ const LoginForm: React.FC = () => {
 
   useEffect(() => {
     getUser();
-  });
+  }, [isLogin]);
 
   return (
     <form onSubmit={handleSubmit}>

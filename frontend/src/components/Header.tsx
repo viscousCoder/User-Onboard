@@ -230,9 +230,9 @@ const Header = () => {
       );
       // console.log(response.data.user._id, "Data");
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem("accessToken", response.data.user.accessToken);
-      localStorage.setItem("itemId", response.data.user.itemId);
-      localStorage.setItem("userId", response.data.user._id);
+      // localStorage.setItem("accessToken", response.data.user.accessToken);
+      // localStorage.setItem("itemId", response.data.user.itemId);
+      // localStorage.setItem("userId", response.data.user._id);
       // setUserdata(response.data.user);
       navigate("/");
     } catch (error) {
