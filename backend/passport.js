@@ -14,7 +14,8 @@ passport.use(
     {
       clientID: process.env.GOOGLECLIENTID,
       clientSecret: process.env.GOOGLECLIENTSECRET,
-      callbackURL: "https://user-onboard.onrender.com/auth/google/callback",
+      callbackURL: "https://useronboarding-tau.vercel.app/auth/google/callback",
+      // callbackURL: "https://user-onboard.onrender.com/auth/google/callback",
       // callbackURL: "http://localhost:8000/auth/google/callback",
       prompt: "select_account",
     },

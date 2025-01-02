@@ -148,7 +148,8 @@ app.use(passport.session());
 app.use(
   cors({
     // origin: "http://localhost:5173",
-    origin: "https://useronboarding01.netlify.app",
+    // origin: "https://useronboarding01.netlify.app",
+    origin: "https://useronboardings.vercel.app/login",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
