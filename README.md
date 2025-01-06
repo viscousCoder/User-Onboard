@@ -56,9 +56,3 @@ Live demo: [https://useronboarding01.netlify.app/](https://useronboarding01.netl
 ## Installation
 
 Follow these steps to get the project up and running locally.
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-username/your-repo.git
-   cd your-repo
-   ```
